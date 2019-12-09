@@ -66,17 +66,7 @@ public class GstMediaPlayer extends ImageView {
         
         FXImageSink fXImageSink = new FXImageSink(videosink);
         fXImageSink.imageProperty().addListener(
-        new ChangeListener<Image>() {
-			@Override
-			public void changed(ObservableValue<? extends Image> observable, Image oldValue, final Image newValue) {
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						setImage(newValue);
-					}
-				});				
-			}        	
-		});
+        imageProperty().bind(fXImageSink.imageProperty());
 
         if (video != null)
         	playbin = new PlayBin("playbin", video);
